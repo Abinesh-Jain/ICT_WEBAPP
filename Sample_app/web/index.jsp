@@ -13,8 +13,23 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <%
-            out.println("Hello!");
-            %>
+<%@page import="java.sql.*,java.util.*"%>
+<%
+//String first_name=request.getParameter("first_name");
+try
+{
+         Class.forName("com.mysql.jdbc.Driver");
+           Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "");
+           Statement st=conn.createStatement();
+           int i=st.executeUpdate("insert into class(student_id,name,section_id,section)values('1','admin','1','D')");
+        out.println("Data is successfully inserted!");
+        }
+        catch(Exception e)
+        {
+        out.println(e.getMessage());
+        //e.printStackTrace();
+        }
+ %>
+
     </body>
 </html>
